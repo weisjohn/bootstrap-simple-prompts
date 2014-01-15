@@ -7,16 +7,28 @@ Requires Bootstrap 3.0+ and jQuery.
 
 ### usage
 
-`alert(message, [title])`
+##### `alert`
+
+`alert(message)`
 
 // TODO: image here...
 
 `confirm(message, [title], callback)`
 
-// TODO: image here as well
+// TODO: image here...
 
 
 
+#### originals
+
+You can access the browser-defined implementation at `[name].original`.
+`alert.original('message')` will give you:
+
+// TODO: image here...
+
+`confirm.original('message')` will give you:
+
+// TODO: image here...
 
 #### credits
 
