@@ -24,7 +24,7 @@
                 <p>' + (text || "") + '</p> \
             </div> \
             <div class="modal-footer"> \
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
+                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>';
         if (confirm) markup += '<button type="button" class="btn btn-primary">Ok</button>';
         markup += '\
             </div> \
@@ -45,7 +45,11 @@
             console.error("fn must be a function");
             return;
         }
-        fn.original = window[method];
+        var original = window[method];
+        fn.original = function() {
+            var newarr = [].slice.call(arguments);
+            return original.apply(window, newarr);
+        }
         window[method] = fn;
     }
 
