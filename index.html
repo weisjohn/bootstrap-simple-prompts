@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="http://getbootstrap.com/dist/css/bootstrap.css" 
+            rel="stylesheet" type="text/css" />
+        <meta charset=utf-8 />
+        <title>Bootstrap Prompts</title>
+    </head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="jumbotron">
+                <h1>Bootstrap Prompts</h1>
+                <p>Bootstrap modals for <code>alert()</code> and <code>confirm()</code>.</p>
+            </div>
+        </div>
+
+
+        <div class="row">
+
+            <div class="col-md-12">
+                <h3><code>alert()</code></h3>
+            </div>
+
+            <div class="col-md-4">
+
+                <pre>alert("Push the button.");</pre>
+
+                <p>
+                    <a class="btn btn-primary btn-med prompt" 
+                        data-method="alert"
+                        data-message="Push the button."
+                        role="button">try it!</a>
+                </p>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <pre>alert("a message", "a title");</pre>
+
+                <p>
+                    <a class="btn btn-primary btn-med prompt" 
+                        data-method="alert"
+                        data-title="a title"
+                        data-message="a message"
+                        role="button">try it!</a>
+                </p>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <pre>alert.original("Oldschool.");</pre>
+
+                <p>
+                    <a class="btn btn-primary btn-med prompt" 
+                        data-method="alert"
+                        data-message="Oldschool."
+                        data-original="true"
+                        role="button">try it!</a>
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">&nbsp;</div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-12">
+                <h3><code>confirm()</code></h3>
+            </div>
+
+            <div class="col-md-4">
+
+<pre>confirm("Ok?", function(result) {
+    console.log(result);
+});</pre>
+                <p>
+                    <a class="btn btn-primary btn-med prompt" 
+                        data-method="confirm"
+                        data-message="Ok?"
+                        role="button">try it!</a>
+                </p>
+
+            </div>
+
+            <div class="col-md-4">
+
+<pre>confirm("Ok?", "Title", function(result) {
+    console.log(result);
+});</pre>
+                <p>
+                    <a class="btn btn-primary btn-med prompt" 
+                        data-method="confirm"
+                        data-message="Ok?"
+                        data-title="Title"
+                        role="button">try it!</a>
+                </p>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+<pre>confirm.original("Ok?", function(result) {
+    console.log(result);
+});</pre>
+                <p>
+                    <a class="btn btn-primary btn-med prompt" 
+                        data-method="confirm"
+                        data-message="Ok?"
+                        data-original="true"
+                        role="button">try it!</a>
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <footer class="container">
+
+        <div class="row">
+            <div class="col-md-12">&nbsp;</div>
+        </div>
+        <hr />
+        <div class="row">
+
+            <div class="col-md-4">
+                <p>Made by <a href="http://twitter.com/weisjohn">John Weis</a></p>
+
+                <p>
+                    <a href="https://twitter.com/weisjohn" class="twitter-follow-button" data-show-count="false" data-lang="en">Follow @weisjohn</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="http://getbootstrap.com/dist/js/bootstrap.js"></script>
+    <script src="bootstrap-simple-prompts.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $(".prompt").click(function(e) {
+                e.preventDefault();
+                var data = $(this).data();
+                var method = window[data.method]
+                if (data.original) method = method.original;
+                if (typeof method === "function") method(data.message, data.title, function(r) {
+                    if (r !== undefined) console.log(r);
+                });
+            });
+        });
+    </script>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</body>
+</html>
