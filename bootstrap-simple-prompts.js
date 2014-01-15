@@ -36,9 +36,9 @@
         return markup;
     }
 
-
+    // override a function on window
     function override(method, fn) {
-        if (!window[method]) {
+        if (!window[method] || typeof window[method] === "function") {
             console.error("window." + method + " is undefined");
             return;
         } 
@@ -49,18 +49,23 @@
         var original = window[method];
         fn.original = function() {
             var newarr = [].slice.call(arguments);
-            return original.apply(window, newarr);
+            var ret = original.apply(window, newarr);
+            if (ret !== undefined && newarr.length > 1) {
+                var cb = newarr[newarr.length - 1];
+                if (typeof cb === "function") cb(ret);
+            }
+            return ret;
         }
         window[method] = fn;
     }
 
     
-    function spawn(msg, title, confirm) {
+    function spawn(msg, title, confirm, cb) {
         $("#bootstrap-prompts-modal").remove();
         var $modal = $(generate(msg, title, confirm));
         $('body').append($modal);
         $modal.modal({ show : true });
-        // TODO: deal with confirm
+        // TODO: deal with confirm buttons
     }
 
     override('alert', function(msg, title) { spawn(msg, title); });
