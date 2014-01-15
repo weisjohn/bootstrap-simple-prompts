@@ -38,7 +38,7 @@
 
     // override a function on window
     function override(method, fn) {
-        if (!window[method] || typeof window[method] === "function") {
+        if (!window[method] || typeof window[method] !== "function") {
             console.error("window." + method + " is undefined");
             return;
         } 
