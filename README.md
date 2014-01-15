@@ -3,6 +3,10 @@ bootstrap-simple-prompts
 
 Bootstrap Modals for `alert()` and `confirm()`. Requires Bootstrap 3.0+ and jQuery.
 
+## install
+
+`bower install bootstrap-simple-prompts`
+
 ## usage
 
 `alert(message, [title])`
