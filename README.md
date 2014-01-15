@@ -1,34 +1,18 @@
 bootstrap-simple-prompts
 ========================
 
-Bootstrap Modals for `alert()` and `confirm()`
+Bootstrap Modals for `alert()` and `confirm()`. Requires Bootstrap 3.0+ and jQuery.
 
-Requires Bootstrap 3.0+ and jQuery.
+## usage
 
-### usage
-
-##### `alert`
-
-`alert(message)`
-
-// TODO: image here...
-
+`alert(message, [title])`
 `confirm(message, [title], callback)`
 
-// TODO: image here...
+## originals
 
-
-
-#### originals
-
-You can access the browser-defined implementation at `[name].original`.
-`alert.original('message')` will give you:
-
-// TODO: image here...
-
-`confirm.original('message')` will give you:
-
-// TODO: image here...
+You can access the browser-defined implementation via:
+`alert.original(message)`
+`confirm.original(message, callback)`
 
 #### credits
 
