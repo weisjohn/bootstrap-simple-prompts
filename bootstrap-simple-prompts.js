@@ -23,10 +23,11 @@
             <div class="modal-body"> \
                 <p>' + (text || "") + '</p> \
             </div> \
-            <div class="modal-footer"> \
-                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>';
-        if (confirm) markup += '<button type="button" class="btn btn-primary">Ok</button>';
+            <div class="modal-footer">'
+                
+        if (confirm) markup += '<button type="button" class="btn btn-default">Cancel</button>';
         markup += '\
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>\
             </div> \
         </div> \
     </div> \
@@ -55,7 +56,6 @@
 
     
     function spawn(msg, title, confirm) {
-        console.log(msg)
         $("#bootstrap-prompts-modal").remove();
         var $modal = $(generate(msg, title, confirm));
         $('body').append($modal);
