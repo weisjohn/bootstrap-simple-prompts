@@ -6,14 +6,14 @@
     // gross helper function to generate markup in a quick way
     function generate(text, title, confirm) {
         var markup = '\
-<div class="modal fade" id="bootstrap-prompts-modal"> \
+<div class="modal fade" id="bootstrap-simple-prompt"> \
     <div class="modal-dialog"> \
         <div class="modal-content"> \
 '
         if (title) {
             markup += '\
             <div class="modal-header"> \
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> \
+                <button type="button" class="close leave cancel" data-dismiss="modal" aria-hidden="true">&times;</button> \
                 <h4 class="modal-title">' + (title) + '</h4> \
             </div> \
             '
@@ -25,9 +25,9 @@
             </div> \
             <div class="modal-footer">'
                 
-        if (confirm) markup += '<button type="button" class="btn btn-default">Cancel</button>';
+        if (confirm) markup += '<button type="button" class="btn btn-default leave cancel">Cancel</button>';
         markup += '\
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>\
+                <button type="button" class="btn btn-primary leave ok" data-dismiss="modal">Ok</button>\
             </div> \
         </div> \
     </div> \
@@ -65,7 +65,13 @@
         var $modal = $(generate(msg, title, confirm));
         $('body').append($modal);
         $modal.modal({ show : true });
-        // TODO: deal with confirm buttons
+        if (confirm) {
+            $("#bootstrap-simple-prompt .leave").click(function(e) {
+                $modal.modal('hide');
+                var result = $(this).is('.close, .cancel') ? false : true;
+                if (typeof cb === "function") cb(result);
+            });
+        }
     }
 
     override('alert', function(msg, title) { spawn(msg, title); });
