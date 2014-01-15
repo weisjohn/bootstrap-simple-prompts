@@ -1,0 +1,25 @@
+{
+  "name": "bootstrap-simple-prompts",
+  "main": "bootstrap-simple-prompts.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/weisjohn/bootstrap-simple-prompts",
+  "authors": [
+    "John Weis <weis.john@gmail.com>"
+  ],
+  "description": "Bootstrap Modals for `alert()` and `confirm()`",
+  "keywords": [
+    "bootstrap",
+    "prompt",
+    "simple",
+    "alert",
+    "confirm"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
