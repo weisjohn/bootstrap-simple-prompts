@@ -6,12 +6,15 @@ Bootstrap Modals for `alert()` and `confirm()`. Requires Bootstrap 3.0+ and jQue
 ## usage
 
 `alert(message, [title])`
+
 `confirm(message, [title], callback)`
 
 ## originals
 
 You can access the browser-defined implementation via:
+
 `alert.original(message)`
+
 `confirm.original(message, callback)`
 
 #### credits
