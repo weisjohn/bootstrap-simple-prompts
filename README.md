@@ -1,7 +1,7 @@
 bootstrap-simple-prompts
 ========================
 
-Bootstrap Modals for `alert()` and `confirm()`. Requires Bootstrap 3.0+ and jQuery.
+Bootstrap Modals for `alert()` and `confirm()`. Requires Bootstrap 3.0+ and jQuery. [Demo](http://weisjohn.github.io/bootstrap-simple-prompts/)
 
 ## install
 
