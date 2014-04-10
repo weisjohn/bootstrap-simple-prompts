@@ -4,7 +4,7 @@
     if (!$.fn.modal.Constructor) return;
 
     // gross helper function to generate markup in a quick way
-    function generate(text, title, confirm) {
+    function generate(text, title, confirm, warning) {
         var markup = '\
 <div class="modal fade" id="bootstrap-simple-prompt"> \
     <div class="modal-dialog"> \
@@ -25,9 +25,15 @@
             </div> \
             <div class="modal-footer">'
                 
-        if (confirm) markup += '<button type="button" class="btn btn-default leave cancel">Cancel</button>';
+        
+        if (typeof warning === "undefined" || warning == false) {
+            if (confirm) markup += '<button type="button" class="btn btn-default leave cancel">Cancel</button>';
+            markup += '<button type="button" class="btn btn-primary leave ok" data-dismiss="modal">Ok</button>'
+        } else {
+            if (confirm) markup += '<button type="button" class="btn btn-primary leave cancel">Cancel</button>';
+            markup += '<button type="button" class="btn btn-danger leave ok" data-dismiss="modal">Ok</button>'
+        }
         markup += '\
-                <button type="button" class="btn btn-primary leave ok" data-dismiss="modal">Ok</button>\
             </div> \
         </div> \
     </div> \
@@ -60,9 +66,9 @@
     }
 
     
-    function spawn(msg, title, confirm, cb) {
+    function spawn(msg, title, confirm, cb, warning) {
         $("#bootstrap-prompts-modal").remove();
-        var $modal = $(generate(msg, title, confirm));
+        var $modal = $(generate(msg, title, confirm, warning));
         $('body').append($modal);
         $modal.modal({ show : true });
         if (confirm) {
@@ -75,9 +81,10 @@
     }
 
     override('alert', function(msg, title) { spawn(msg, title); });
-    override('confirm', function(msg, title, cb) { 
-        if (typeof title === "function") cb = title, title = null;
-        spawn(msg, title, true, cb);
+    override('confirm', function(msg, title, warning, cb) { 
+        if (typeof title === "function") cb = title, title = null, warning = false;
+        if (typeof warning === "function") cb = warning, warning = false;
+        spawn(msg, title, true, cb, warning);
     });
 
 })();
