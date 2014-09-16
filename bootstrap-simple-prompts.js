@@ -67,7 +67,7 @@
 
     
     function spawn(msg, title, confirm, cb, warning) {
-        $("#bootstrap-prompts-modal").remove();
+        $("#bootstrap-simple-prompt").remove();
         var $modal = $(generate(msg, title, confirm, warning));
         $('body').append($modal);
         $modal.modal({ show : true });
